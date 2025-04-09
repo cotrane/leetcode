@@ -1,4 +1,5 @@
 from typing import List
+import unittest
 
 
 class Solution:
@@ -23,3 +24,15 @@ class Solution:
                     left += 1
                 min_length = min(min_length, right - left + 1)
         return min_length if min_length != float("inf") else 0
+
+
+class TestSolution(unittest.TestCase):
+    def test_minSubArrayLen(self):
+        solution = Solution()
+        self.assertEqual(solution.minSubArrayLen(7, [2, 3, 1, 2, 4, 3]), 2)
+        self.assertEqual(solution.minSubArrayLen(4, [1, 4, 4]), 1)
+        self.assertEqual(solution.minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1, 1]), 0)
+
+
+if __name__ == "__main__":
+    unittest.main()

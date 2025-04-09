@@ -1,3 +1,6 @@
+import unittest
+
+
 class Solution:
     def maxSubarraySumCircular(self, nums: list[int]) -> int:
         """Solves the maximum sum circular subarray problem:
@@ -29,15 +32,20 @@ class Solution:
             max_sum = max(max_sum, curr_max)
             curr_min = min(curr_min + num, num)
             min_sum = min(min_sum, curr_min)
-        # If all numbers are negative, return the maximum sum
+        # If the sum is negative, return the maximum sum
         # Otherwise, return the maximum of the non-wrapped case or the wrapped case
         # (sum of whole array - minimum subarray sum)
         return max_sum if max_sum <= 0 else max(max_sum, sum(nums) - min_sum)
 
 
-if __name__ == "__main__":
-    sample = [-2, 4, 4, 4, 6]
-    sample = [5, -3, 5]
-    sample = [-3, -2, -3]
+class TestSolution(unittest.TestCase):
+    def test_maxSubarraySumCircular(self):
+        self.assertEqual(Solution().maxSubarraySumCircular([1, -2, 3, -2]), 3)
+        self.assertEqual(Solution().maxSubarraySumCircular([5, -3, 5]), 10)
+        self.assertEqual(Solution().maxSubarraySumCircular([-3, -2, -3]), -2)
+        self.assertEqual(Solution().maxSubarraySumCircular([-2, -3, -1]), -1)
+        self.assertEqual(Solution().maxSubarraySumCircular([-2, -3, -1, -2, -3]), -1)
 
-    print(Solution().maxSubarraySumCircular(sample))
+
+if __name__ == "__main__":
+    unittest.main()

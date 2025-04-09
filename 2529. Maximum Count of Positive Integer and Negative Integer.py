@@ -44,7 +44,6 @@ class Solution:
 
         left = binary_search(nums, 0)
         right = binary_search(nums, 1)
-        print(left, right)
         return max(left, len(nums) - right)
 
 
